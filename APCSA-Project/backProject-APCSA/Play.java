@@ -16,6 +16,20 @@ public class Play {
         Room currentRoom = map[stats.getY()][stats.getX()];
         Scanner scanner = new Scanner(System.in);
 
+        printWithDelayButFaster("\n" + //
+                        "               ___\n" + //
+                        "             /`   `'.\n" + //
+                        "            /   _..---;\n" + //
+                        "            |  /__..._/  .--.-.\n" + //
+                        "            |.'  e e | ___\\_|/____\n" + //
+                        "           (_)'--.o.--|    | |    |\n" + //
+                        "          .-( `-' = `-|____| |____|\n" + //
+                        "         /  (         |____   ____|\n" + //
+                        "         |   (        |_   | |  __|\n" + //
+                        "         |    '-.--';/'/__ | | (  `|\n" + //
+                        "         |      '.   \\    )\"\";--`\\ /\n" + //
+                        "         \\        ;   |--'    `;.-'\n" + //
+                        "         |`-.__ ..-'--'`;..--'`");
         // beginning message
         String welcomeMessage = "You've just entered a house as Santa for Christmas. \nBut watch out, you must not wake up the kids in their rooms, otherwise the surprise will be spoiled.\nVenture throughout the map and find the cookies and letters that they left out by finding and using items to help you get past the dangerous rooms.\nGood luck, and Merry Christmas!\nType 1 to begin!";
             
@@ -35,7 +49,75 @@ public class Play {
             clearScreen();
 
             //loading effect
-            String loading[] = {"Loading", "Loading.", "Loading..", "Loading..."};
+            String loading[] = {"   ...        *                        *       *\n" + //
+                                "      ...   *         * ..   ...                        *\n" + //
+                                " *      ...        *           *            *\n" + //
+                                "          ...               ...                          *\n" + //
+                                "            ..                            *\n" + //
+                                "    *        ..        *                       *\n" + //
+                                "           __##____              *                      *\n" + //
+                                "  *    *  /  ##  ****                   *\n" + //
+                                "         /        ****               *         *  X   *\n" + //
+                                "   *    /        ******     *                    XXX      *\n" + //
+                                "       /___________*****          *             XXXXX\n" + //
+                                "        |            ***               *       XXXXXXX   X\n" + //
+                                "    *   | ___        |                    *   XXXXXXXX  XXX\n" + //
+                                "  *     | | |   ___  | *       *             XXXXXXXXXXXXXXX\n" + //
+                                "        | |_|   | |  ****             *           X   XXXXXXX\n" + //
+                                "    *********** | | *******      *                X      X\n" + //
+                                "************************************************************\n" + //
+                                "", "   ...                                          \n" + //
+                                                                        "      ...     *        ..    ...       *       *         \n" + //
+                                                                        "        ... *        *                                  *\n" + //
+                                                                        " *        ...      *        ...*            *             \n" + //
+                                                                        "            ..                                            *\n" + //
+                                                                        "             ..                           *     \n" + //
+                                                                        "    *      __##____    *                       *         \n" + //
+                                                                        "          /  ##  ****            *                      *\n" + //
+                                                                        "  *    * /        ****                  *         X    \n" + //
+                                                                        "        /        ******              *         * XXX  *    \n" + //
+                                                                        "   *   /___________*****    *                   XXXXX      *\n" + //
+                                                                        "        |            ***          *    *       XXXXXXX   X\n" + //
+                                                                        "        | ___        |                    *   XXXXXXXX  XXX\n" + //
+                                                                        "    *   | | |   ___  | *                     XXXXXXXXXXXXXXX\n" + //
+                                                                        "  *     | |_|   | |  ****      *                  X   XXXXXXX\n" + //
+                                                                        "    *********** | | *******           *           X      X\n" + //
+                                                                        "************************************************************\n" + //
+                                                                        "", "   ...                                          \n" + //
+                                                                                                                                                        "      ...              ..    ...                         \n" + //
+                                                                                                                                                        "        ...   *                        *       *         \n" + //
+                                                                                                                                                        "          ...        *      ...             *           * \n" + //
+                                                                                                                                                        " *          ..     *           *                           \n" + //
+                                                                                                                                                        "             ..                                            *\n" + //
+                                                                                                                                                        "           __##____                       *              \n" + //
+                                                                                                                                                        "    *     /  ##  ****  *                       *         \n" + //
+                                                                                                                                                        "         /        ****           *      *         X      *\n" + //
+                                                                                                                                                        "  *    */        ******                          XXX       \n" + //
+                                                                                                                                                        "       /___________*****             *         *XXXXX *     \n" + //
+                                                                                                                                                        "   *    |            ***    *                  XXXXXXX   X  *\n" + //
+                                                                                                                                                        "        | ___        |            *    *      XXXXXXXX  XXX\n" + //
+                                                                                                                                                        "        | | |   ___  | *                  *  XXXXXXXXXXXXXXX\n" + //
+                                                                                                                                                        "    *   | |_|   | |  ****                         X   XXXXXXX\n" + //
+                                                                                                                                                        "  * *********** | | *******    *                  X      X\n" + //
+                                                                                                                                                        "************************************************************\n" + //
+                                                                                                                                                        "", "   ...                                          \n" + //
+                                                                                                                                                                                                                                                                                                                        "      ...              ..    ...                         \n" + //
+                                                                                                                                                                                                                                                                                                                        "        ...                                              \n" + //
+                                                                                                                                                                                                                                                                                                                        "          ... *             ...        *       *          \n" + //
+                                                                                                                                                                                                                                                                                                                        "            ..       *                      *           *  \n" + //
+                                                                                                                                                                                                                                                                                                                        " *           ..    *           *                            \n" + //
+                                                                                                                                                                                                                                                                                                                        "           __##____                                         *\n" + //
+                                                                                                                                                                                                                                                                                                                        "          /  ##  ****                     *              \n" + //
+                                                                                                                                                                                                                                                                                                                        "    *    /        **** *                       *  X       \n" + //
+                                                                                                                                                                                                                                                                                                                        "        /        ******          *      *        XXX     * \n" + //
+                                                                                                                                                                                                                                                                                                                        "  *    /___________*****                        XXXXX       \n" + //
+                                                                                                                                                                                                                                                                                                                        "        |            ***             *         XXXXXXX*  X   \n" + //
+                                                                                                                                                                                                                                                                                                                        "   *    | ___        |      *                 XXXXXXXX  XXX  *\n" + //
+                                                                                                                                                                                                                                                                                                                        "        | | |   ___  | *          *    *     XXXXXXXXXXXXXXX\n" + //
+                                                                                                                                                                                                                                                                                                                        "        | |_|   | |  ****                 *       X   XXXXXXX\n" + //
+                                                                                                                                                                                                                                                                                                                        "    *********** | | *******                       X      X\n" + //
+                                                                                                                                                                                                                                                                                                                        "************************************************************\n" + //
+                                                                                                                                                                                                                                                                                                                        ""};
 
             for(int i = 0; i < 3; i++){
 
@@ -91,6 +173,32 @@ public class Play {
                     }
                 }
                 //win sequence
+                printWithDelayButFaster("\n" + //
+                                        "           *             ,\n" + //
+                                        "                       _/^\\_\n" + //
+                                        "                      <     >\n" + //
+                                        "     *                 /.-.\\         *\n" + //
+                                        "              *        `/&\\`                   *\n" + //
+                                        "                      ,@.*;@,\n" + //
+                                        "                     /_o.I %_\\    *\n" + //
+                                        "        *           (`'--:o(_@;\n" + //
+                                        "                   /`;--.,__ `')             *\n" + //
+                                        "                  ;@`o % O,*`'`&\\ \n" + //
+                                        "            *    (`'--)_@ ;o %'()\\      *\n" + //
+                                        "                 /`;--._`''--._O'@;\n" + //
+                                        "                /&*,()~o`;-.,_ `\"\"`)\n" + //
+                                        "     *          /`,@ ;+& () o*`;-';\\\n" + //
+                                        "               (`\"\"--.,_0 +% @' &()\\\n" + //
+                                        "               /-.,_    ``''--....-'`)  *\n" + //
+                                        "          *    /@%;o`:;'--,.__   __.'\\\n" + //
+                                        "              ;*,&(); @ % &^;~`\"`o;@();         *\n" + //
+                                        "              /(); o^~; & ().o@*&`;&%O\\\n" + //
+                                        "        jgs   `\"=\"==\"\"==,,,.,=\"==\"===\"`\n" + //
+                                        "           __.----.(\\-''#####---...___...-----._\n" + //
+                                        "         '`         \\)_`\"\"\"\"\"`\n" + //
+                                        "                 .--' ')\n" + //
+                                        "               o(  )_-\\\n" + //
+                                        "                 `\"\"\"` `");
                 printWithDelay("Congratulations, you ate the cookie and have succesfully left both correct presents for the kids. You've made these kids a wonderful christmas.");
                 printWithDelay(stats.endMessage());
 
@@ -366,6 +474,7 @@ public class Play {
 
             //exception for index that goes out of bounds
             } catch (ArrayIndexOutOfBoundsException e) {
+                printWithDelayButFastest(null);(null);
                 printWithDelay("That is a wall");
             }
         }
@@ -383,6 +492,22 @@ public class Play {
         for (int count=0; count < x.length(); count++){
             System.out.print(x.charAt(count));
             TimeUnit.MILLISECONDS.sleep(40);
+        }
+        System.out.println();
+    }
+
+    public static void printWithDelayButFaster(String x) throws InterruptedException{
+        for (int count=0; count < x.length(); count++){
+            System.out.print(x.charAt(count));
+            TimeUnit.MILLISECONDS.sleep(10);
+        }
+        System.out.println();
+    }
+
+    public static void printWithDelayButFastest(String x) throws InterruptedException{
+        for (int count=0; count < x.length(); count++){
+            System.out.print(x.charAt(count));
+            TimeUnit.MILLISECONDS.sleep(2);
         }
         System.out.println();
     }
