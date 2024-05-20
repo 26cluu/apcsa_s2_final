@@ -1,13 +1,14 @@
 package src.playerStats;
 
 import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
 
 import src.Items.Item;
 
 public class Stats {
     //attributes
     private int awakeLevel = 10;
-    private Item[] hotbar = new Item[3];
+    private ArrayList<Item> hotbar = new ArrayList<Item>();
     private int x = 0;
     private int y = 0;
     private boolean silent = false;
@@ -24,7 +25,7 @@ public class Stats {
         this.awakeLevel = awakeLevel;
     }
 
-    public void setHotbar(Item[] hotbar) {
+    public void setHotbar(ArrayList<Item> hotbar) {
         this.hotbar = hotbar;
     }
 
@@ -54,7 +55,7 @@ public class Stats {
         return awakeLevel;
     }
 
-    public Item[] getHotbar() {
+    public ArrayList<Item> getHotbar() {
         return hotbar;
     }
 
@@ -82,41 +83,69 @@ public class Stats {
         return lettersFound;
     }
 
-    //loops through hotbar and displays each item
-    public void displayHotBar() throws InterruptedException {
-        for (int i = 0; i < hotbar.length; i++) {
-            if (hotbar[i] == null){
+    // //loops through hotbar and displays each item
+    // public void displayHotBar() throws InterruptedException {
+    //     for (int i = 0; i < hotbar.length; i++) {
+    //         if (hotbar[i] == null){
 
-                // printing 
-                String isEmptyPrint = i + ": " + "empty\n";
+    //             // printing 
+    //             String isEmptyPrint = i + ": " + "empty\n";
 
-                for (int count=0; count < isEmptyPrint.length(); count++){
-                    System.out.print(isEmptyPrint.charAt(count));
-                    TimeUnit.MILLISECONDS.sleep(40);
-                }
+    //             for (int count=0; count < isEmptyPrint.length(); count++){
+    //                 System.out.print(isEmptyPrint.charAt(count));
+    //                 TimeUnit.MILLISECONDS.sleep(40);
+    //             }
 
                 
-            } else {
+    //         } else {
 
-                // printing
-                String isItemPrint = i + ": " + hotbar[i].getName() + "\n";
+    //             // printing
+    //             String isItemPrint = i + ": " + hotbar[i].getName() + "\n";
 
-                for (int count=0; count < isItemPrint.length(); count++){
-                    System.out.print(isItemPrint.charAt(count));
-                    TimeUnit.MILLISECONDS.sleep(40);
-                }
-            }
+    //             for (int count=0; count < isItemPrint.length(); count++){
+    //                 System.out.print(isItemPrint.charAt(count));
+    //                 TimeUnit.MILLISECONDS.sleep(40);
+    //             }
+    //         }
 
             
+    //     }
+    // }
+
+
+    public void displayHotBar() throws InterruptedException {
+        for (int i = 0; i < hotbar.size(); i++) {
+            //print
+            String isItemPrint = i + ": " + hotbar.get(i).getName() + "\n";
+
+            slowPrint(isItemPrint);
         }
 
-
-
+        if (hotbar.size() == 0) {
+            String message = "sorry, there's currently no items in your hotbar";
+            slowPrint(message);
+        }
     }
 
     //puts item in current slop
-    public void swapHotbar(int x, Item item) {
-        hotbar[x] = item;
+    // public void swapHotbar(int x, Item item) {
+    //     hotbar[x] = item;
+    // }
+
+    public void slowPrint(String string) throws InterruptedException {
+        for (int count = 0; count < string.length(); count++) {
+            System.out.print(string.charAt(count));
+            TimeUnit.MILLISECONDS.sleep(40);
+        }
+        clearScreen();
+    }
+
+    public void addItemHotbar( Item item) {
+        hotbar.add(item);
+    }
+
+    public void removeItemHotbar(int index) {
+        hotbar.remove(index);
     }
 
     //  METHOD THAT CLEARS CONSOLE

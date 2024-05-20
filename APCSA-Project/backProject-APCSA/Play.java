@@ -124,14 +124,12 @@ public class Play {
                         if (answer.equals("y")) {
                             //item and hotbar info
                             printWithDelay(currentRoom.getRoomItem().toString());
-                            stats.displayHotBar();
 
                             //user chooses what slot they want the item to go in
-                            printWithDelay("Please enter an index from 0 to 2");
-                            int index = scanner.nextInt();
-                            scanner.nextLine();
-                            stats.swapHotbar(index, currentRoom.getRoomItem());
+                            printWithDelay("Picking Up Item");
+                            stats.addItemHotbar(currentRoom.getRoomItem());
                             currentRoom.getRoomItem().setConsumable(false);
+                            stats.displayHotBar();
                         }
                     }
                 }
@@ -173,7 +171,7 @@ public class Play {
 
                     // --- WHICH ITEM QUESTION ---
                     
-                    String whichItemQuestion = "Which item would you like to consume (0, 1, or 2)";
+                    String whichItemQuestion = "Which item would you like to consume?";
 
                     printWithDelay(whichItemQuestion);
 
@@ -182,13 +180,13 @@ public class Play {
                     int index = scanner.nextInt();
                     scanner.nextLine();
 
-                    Item item = stats.getHotbar()[index];
+                    Item item = stats.getHotbar().get(index);
 
                     //clearing screen makes it hard for user to remember what index they wanted
                     // clearScreen();
 
                     // NOT VALID INDEX FOR HOT BAR
-                    if (index > 2 || index < 0) {
+                    if (index < 0) {
 
                         // PRINTING MESSAGE
                         clearScreen();
@@ -219,11 +217,13 @@ public class Play {
                     // if cookie ->
                     else if (item instanceof Cookie) {
                         printWithDelay(((Cookie) item).consume(stats));
+                        stats.removeItemHotbar(index);
                     } 
                     // if note ->
                     else if (item instanceof Note) {
                         printWithDelay(((Note) item).getMessage());
                         stats.setLettersFound(stats.getLettersFound() + 1);
+                        stats.removeItemHotbar(index);
                     }  
 
                     // if flashlight ->
@@ -240,15 +240,15 @@ public class Play {
                         // action of using flashlight
                         String direction = scanner.nextLine();
                         printWithDelay(((Flashlight) item).consume(stats.getX(), stats.getY(), direction, map));
+                        stats.removeItemHotbar(index);
                     } 
 
                     // if slippers ->
                     else if (item instanceof Slippers) {
                         ((Slippers) item).consume(stats);
+                        stats.removeItemHotbar(index);
                     }
 
-                    //removes item from hotbar after use
-                    stats.getHotbar()[index] = null;
                 } 
                 // option 3 -> move
                 else if (response.equals("3")) {
