@@ -152,6 +152,7 @@ public class Play {
         while (gameState.getEnd() == false) {
             //gets current room
             currentRoom = map[stats.getY()][stats.getX()];
+            printWithDelay(map[stats.getY()][stats.getX()].describe());
             //end condition
             if (stats.getX() == 0 && stats.getY() == 0 && stats.getCookie()) {
                 boolean present1 = false;
@@ -361,6 +362,8 @@ public class Play {
                 // option 3 -> move
                 else if (response.equals("3")) {
                     move(scanner, stats, map, stats.getX(), stats.getY());
+                    System.out.println("You're current location: ");
+                    displayMap(map, stats.getY(), stats.getX());
                 } 
                 // non-valid optino ->
                 else {
@@ -405,7 +408,6 @@ public class Play {
 
                         //prints info about new room and position
                         printWithDelay("Now you are currently at (" + stats.getX() +  ", " + stats.getY() + ")");
-                        printWithDelay(map[stats.getY()][stats.getX()].describe());
 
                         //confirms valid response
                         valid = true;
@@ -425,7 +427,6 @@ public class Play {
 
                         //gives new info on room and position
                         printWithDelay("Now you are currently at (" + stats.getX() + ", " + stats.getY() + ")");
-                        printWithDelay(map[stats.getY()][stats.getX()].describe());
 
                         //confirms valid response
                         valid = true;
@@ -445,7 +446,6 @@ public class Play {
 
                         //gives new info
                         printWithDelay("Now you are currently at (" + stats.getX() + ", " + stats.getY() + ")");
-                        printWithDelay(map[stats.getY()][stats.getX()].describe());
 
                         //confirms valid response
                         valid = true;
@@ -465,7 +465,6 @@ public class Play {
 
                         //gives new info about room
                         printWithDelay("Now you are currently at ( " + stats.getX() +  ", " + stats.getY() + ")");
-                        printWithDelay(map[stats.getY()][stats.getX()].describe());
 
                         //confirms valid response
                         valid = true;
@@ -474,10 +473,10 @@ public class Play {
 
             //exception for index that goes out of bounds
             } catch (ArrayIndexOutOfBoundsException e) {
-                printWithDelayButFastest(null);(null);
+                printWithDelayButFastest(null);
                 printWithDelay("That is a wall");
             }
-        }
+        }   
     }
 
 
@@ -510,5 +509,29 @@ public class Play {
             TimeUnit.MILLISECONDS.sleep(2);
         }
         System.out.println();
+    }
+
+
+
+    public static void displayMap(Room[][] map, int y, int x) {
+        for (int i = 0; i < map.length; i++) {
+            System.out.print("[ ");
+            for (int j = 0; j < map[0].length; j++) {
+                Room room = map[i][j];
+                if (room == null) {
+                    System.out.print(" 0 ");
+                }
+                else if ((i == y) && (j == x)) {
+                    System.out.print(" x ");
+                }
+                else if (room.isFirstEncounter() == false) {
+                    System.out.print(" - ");
+                }
+                else {
+                    System.out.print(" 0 ");
+                }
+            }
+            System.out.println(" ]");
+        }
     }
 }
